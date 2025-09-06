@@ -29,14 +29,12 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Login và trả JWT token
-     */
+
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
 
-        // 🔑 dùng guard api thay vì mặc định web
+
         if (! $token = Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized - Invalid email or password'], 401);
         }
@@ -44,17 +42,12 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    /**
-     * Lấy thông tin user hiện tại
-     */
+
     public function profile()
     {
         return response()->json(Auth::guard('api')->user());
     }
 
-    /**
-     * Logout (invalidate token)
-     */
     public function logout()
     {
         Auth::guard('api')->logout();
@@ -62,17 +55,12 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    /**
-     * Refresh token
-     */
+
     public function refresh()
     {
         return $this->respondWithToken(Auth::guard('api')->refresh());
     }
 
-    /**
-     * Trả response với token
-     */
     protected function respondWithToken($token)
     {
         return response()->json([

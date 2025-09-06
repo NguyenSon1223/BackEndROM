@@ -14,10 +14,9 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::insert([
-            ['name' => 'Bàn học'],
-            ['name' => 'Ghế học'],
-            ['name' => 'Ghế ăn'],
-            ['name' => 'Bàn ăn'],
+            ['name' => 'ROM Custom'],
+            ['name' => 'ROM Port'],
+            ['name' => 'ROM Gốc'],
         ]);
     }
 }
