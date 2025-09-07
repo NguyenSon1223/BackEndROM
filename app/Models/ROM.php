@@ -13,6 +13,6 @@ class ROM extends Model
         'name',
         'feature',
         'date_build',
-        'new_date_updated'
+        'new_updated_date'
     ];
 }

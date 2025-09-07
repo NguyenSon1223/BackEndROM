@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('r_o_m_s', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('feature');
-            $table->date('date_build');
-            $table->date('new_updated_date')->nullable();
+            $table->string('order_code')->unique();
+            $table->unsignedInteger('amount');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('r_o_m_s');
+        Schema::dropIfExists('orders');
     }
 };

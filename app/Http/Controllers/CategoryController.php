@@ -34,7 +34,7 @@ class CategoryController extends Controller
     /**
      * Lấy chi tiết một category
      */
-    public function show(int $id): JsonResponse
+    public function show(int $id)
     {
         $category = Category::findOrFail($id);
         return response()->json($category, 200);
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     /**
      * Cập nhật một category
      */
-    public function update(Request $request, int $id): JsonResponse
+    public function update(Request $request, int $id)
     {
         $category = Category::findOrFail($id);
 
@@ -59,7 +59,7 @@ class CategoryController extends Controller
     /**
      * Xoá một category
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id)
     {
         $category = Category::findOrFail($id);
         $category->delete();

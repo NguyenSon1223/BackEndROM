@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ROM;
+use Exception;
 use Illuminate\Http\Request;
 
 class RomController extends Controller
@@ -16,17 +17,14 @@ class RomController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'feature' => 'required|string',
+            'feature' => 'required|string|max:255',
             'date_build' => 'required|date',
-            'new_date_updated' => 'nullable|date',
+            'new_updated_date' => 'nullable|date'
         ]);
 
-        $rom = Rom::create($validated);
+        $rom = ROM::create($validated);
 
-        return response()->json([
-            'message' => 'ROM created successfully!',
-            'data' => $rom
-        ], 201);
+        return response()->json($rom,201);
     }
 
     public function show($id)

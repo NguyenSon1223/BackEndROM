@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,10 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::apiResource('roms', RomController::class);
+
+
+
+Route::get('/orders', [OrderController::class, 'getAllOrders']);
+Route::post('/orders', [OrderController::class, 'createOrder']);
+Route::get('/payos/return', [OrderController::class, 'handleReturn']);
+Route::get('/payos/cancel', [OrderController::class, 'handleCancel']);
