@@ -36,7 +36,3 @@ Route::get('/payos/cancel', [OrderController::class, 'handleCancel']);
 
 # Payment
 
-
-Route::post('/payment/create', [PaymentPayOSController::class, 'createPayment']);
-Route::get('/payment/success', [PaymentPayOSController::class, 'paymentSuccess']);
-Route::get('/payment/cancel', [PaymentPayOSController::class, 'paymentCancel']);

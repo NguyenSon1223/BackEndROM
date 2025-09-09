@@ -2,7 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use PayOS\PayOS;
+
+
 abstract class Controller
 {
-    //
+    use AuthorizesRequests, ValidatesRequests;
+
+    protected PayOS $payOS;
+
+    public function __construct()
+    {
+        $this->payOS = new PayOS(
+            env("PAYOS_API_KEY"),
+            env("PAYOS_CLIENT_ID"),
+            env("PAYOS_CHECKSUM_KEY")
+        );
+    }
+
+    protected function handleException(\Throwable $th){
+        return response()->json([
+            "error" => $th->getCode(),
+            "message" => $th->getMessage(),
+            "data" => null
+        ]);
+    }
+
+
 }
