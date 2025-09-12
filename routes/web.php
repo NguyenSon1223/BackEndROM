@@ -11,11 +11,11 @@ Route::get('/', function () {
 });
 
 
-Route::get('/success.html', function () {
+Route::get('/success', function () {
     return view('success');
 });
 
-Route::get('/cancel.html', function () {
+Route::get('/cancel', function () {
     return view('cancel');
 });
 

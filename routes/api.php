@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentPayOSController;
+use App\Http\Controllers\PayOsController;
 use App\Http\Controllers\RomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,7 @@ Route::get('/payos/cancel', [OrderController::class, 'handleCancel']);
 
 # Payment
 
+Route::prefix("payment")->group(function () {
+    Route::post("/create", [PayOsController::class, "createPayment"]);
+    Route::post("/webhook", [PayOsController::class, "handlePayOSWebhook"]);
+});
